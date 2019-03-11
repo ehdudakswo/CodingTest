@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import java.util.PriorityQueue;
+
 public class Sort {
 
     public int[] bubble(int[] inputs) {
@@ -57,6 +59,22 @@ public class Sort {
                     arr[0] = insert;
                 }
             }
+        }
+
+        return arr;
+    }
+
+    public int[] heap(int[] inputs) {
+        int[] arr = inputs.clone();
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
+
+        for (int e : arr) {
+            pq.add(e);
+        }
+
+        int idx = 0;
+        while (!pq.isEmpty()) {
+            arr[idx++] = pq.poll();
         }
 
         return arr;
