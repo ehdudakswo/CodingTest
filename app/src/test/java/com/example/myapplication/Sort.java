@@ -1,6 +1,8 @@
 package com.example.myapplication;
 
+import java.util.LinkedList;
 import java.util.PriorityQueue;
+import java.util.Queue;
 
 public class Sort {
 
@@ -158,6 +160,45 @@ public class Sort {
         int temp = arr[a];
         arr[a] = arr[b];
         arr[b] = temp;
+    }
+
+    public int[] radix(int[] inputs) {
+        int[] ret = inputs.clone();
+        int maxLen = maxLen(ret);
+        int bucketCnt = 10;
+
+        Queue[] bucket = new LinkedList[bucketCnt];
+        for (int i = 0; i < bucket.length; i++) {
+            bucket[i] = new LinkedList<Integer>();
+        }
+
+        int div = 1;
+        while (maxLen-- > 0) {
+            for (int e : ret) {
+                int idx = (e / div) % bucketCnt;
+                bucket[idx].add(e);
+            }
+
+            int idx = 0;
+            for (Queue bk : bucket) {
+                while (!bk.isEmpty()) {
+                    ret[idx++] = (int) bk.poll();
+                }
+            }
+
+            div *= 10;
+        }
+
+        return ret;
+    }
+
+    private int maxLen(int[] arr) {
+        int max = arr[0];
+        for (int e : arr) {
+            max = Math.max(max, e);
+        }
+
+        return String.valueOf(max).length();
     }
 
 }

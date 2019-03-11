@@ -68,4 +68,17 @@ public class SortTest {
         assertEquals(9, sorted[4]);
     }
 
+    @Test
+    public void testRadix() {
+        int[] arr = {13, 212, 14, 7141, 10987, 6, 15};
+        int[] sorted = new Sort().radix(arr);
+        assertEquals(6, sorted[0]);
+        assertEquals(13, sorted[1]);
+        assertEquals(14, sorted[2]);
+        assertEquals(15, sorted[3]);
+        assertEquals(212, sorted[4]);
+        assertEquals(7141, sorted[5]);
+        assertEquals(10987, sorted[6]);
+    }
+
 }
