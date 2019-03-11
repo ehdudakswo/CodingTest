@@ -126,4 +126,38 @@ public class Sort {
         }
     }
 
+    public int[] quick(int[] inputs) {
+        int[] arr = inputs.clone();
+        quick(arr, 0, arr.length - 1);
+
+        return arr;
+    }
+
+    private void quick(int[] arr, int left, int right) {
+        if (left >= right) {
+            return;
+        }
+
+        int pivot = arr[left];
+        int l = left + 1;
+        int r = right;
+
+        while (true) {
+            while (l <= right && arr[l] <= pivot) l++;
+            while (r >= left + 1 && arr[r] >= pivot) r--;
+            if (l > r) break;
+            swap(arr, l, r);
+        }
+
+        swap(arr, left, r);
+        quick(arr, left, r - 1);
+        quick(arr, r + 1, right);
+    }
+
+    private void swap(int[] arr, int a, int b) {
+        int temp = arr[a];
+        arr[a] = arr[b];
+        arr[b] = temp;
+    }
+
 }

@@ -58,4 +58,14 @@ public class SortTest {
         assertEquals(9, sorted[4]);
     }
 
+    @Test
+    public void testQuick() {
+        int[] sorted = new Sort().quick(arr);
+        assertEquals(1, sorted[0]);
+        assertEquals(3, sorted[1]);
+        assertEquals(5, sorted[2]);
+        assertEquals(7, sorted[3]);
+        assertEquals(9, sorted[4]);
+    }
+
 }
