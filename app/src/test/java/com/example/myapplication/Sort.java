@@ -80,4 +80,50 @@ public class Sort {
         return arr;
     }
 
+    public int[] merge(int[] inputs) {
+        int[] arr = inputs.clone();
+        int len = arr.length;
+
+        merge(arr, 0, len - 1);
+
+        return arr;
+    }
+
+    private void merge(int[] arr, int left, int right) {
+        if (left >= right) {
+            return;
+        }
+
+        int mid = (left + right) / 2;
+        merge(arr, left, mid);
+        merge(arr, mid + 1, right);
+
+        int[] temp = new int[right - left + 1];
+        int t = 0;
+        int l = left;
+        int r = mid + 1;
+
+        while (l <= mid && r <= right) {
+            if (arr[l] < arr[r]) {
+                temp[t++] = arr[l++];
+            } else {
+                temp[t++] = arr[r++];
+            }
+        }
+
+        if (left > mid) {
+            while (r <= right) {
+                temp[t++] = arr[r++];
+            }
+        } else {
+            while (l <= mid) {
+                temp[t++] = arr[l++];
+            }
+        }
+
+        for (int i = 0; i < temp.length; i++) {
+            arr[i + left] = temp[i];
+        }
+    }
+
 }
