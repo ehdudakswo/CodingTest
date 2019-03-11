@@ -19,4 +19,24 @@ public class Sort {
         return arr;
     }
 
+    public int[] selection(int[] inputs) {
+        int[] arr = inputs.clone();
+        int len = arr.length;
+
+        for (int i = 0; i < len - 1; i++) {
+            int min = i;
+            for (int j = i + 1; j < len; j++) {
+                if (arr[min] > arr[j]) {
+                    min = j;
+                }
+            }
+
+            int temp = arr[i];
+            arr[i] = arr[min];
+            arr[min] = temp;
+        }
+
+        return arr;
+    }
+
 }
