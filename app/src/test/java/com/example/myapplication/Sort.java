@@ -39,4 +39,27 @@ public class Sort {
         return arr;
     }
 
+    public int[] insertion(int[] inputs) {
+        int[] arr = inputs.clone();
+        int len = arr.length;
+
+        for (int i = 1; i < len; i++) {
+            int insert = arr[i];
+            for (int j = i - 1; j >= 0; j--) {
+                if (arr[j] > insert) {
+                    arr[j + 1] = arr[j];
+                } else {
+                    arr[j + 1] = insert;
+                    break;
+                }
+
+                if (j == 0) {
+                    arr[0] = insert;
+                }
+            }
+        }
+
+        return arr;
+    }
+
 }
